@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Table
@@ -21,9 +20,10 @@ public class Reservation {
     @Comment("예약 id")
     private int id;
 
-    @Column(columnDefinition = "BINARY(16)", nullable = false, name = "performance_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "performance_id", columnDefinition = "BINARY(16)", nullable = false)
     @Comment("공연전시ID")
-    private UUID performanceId;
+    private Performance performance;
 
     @Column(nullable = false)
     @Comment("예약자명")
@@ -59,6 +59,7 @@ public class Reservation {
 
     public Reservation(Builder builder) {
         this.id = builder.id;
+        this.performance = builder.performance;
         this.name = builder.name;
         this.phoneNumber = builder.phoneNumber;
         this.round = builder.round;
@@ -71,6 +72,7 @@ public class Reservation {
 
     public static class Builder {
         private int id;
+        private Performance performance;
         private String name;
         private String phoneNumber;
         private int round;
@@ -82,6 +84,11 @@ public class Reservation {
 
         public Builder id(int id) {
             this.id = id;
+            return this;
+        }
+
+        public Builder performance(Performance performance) {
+            this.performance = performance;
             return this;
         }
 
