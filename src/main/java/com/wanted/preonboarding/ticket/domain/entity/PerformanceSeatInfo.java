@@ -55,6 +55,7 @@ public class PerformanceSeatInfo {
 
     public PerformanceSeatInfo(Builder builder) {
         this.id = builder.id;
+        this.round = builder.round;
         this.performance = builder.performance;
         this.gate = builder.gate;
         this.line = builder.line;
@@ -66,6 +67,7 @@ public class PerformanceSeatInfo {
 
     public static class Builder {
         private Long id;
+        private int round;
         private Performance performance;
         private int gate;
         private String line;
@@ -76,6 +78,11 @@ public class PerformanceSeatInfo {
 
         public Builder id(Long id) {
             this.id = id;
+            return this;
+        }
+
+        public Builder round(int round) {
+            this.round = round;
             return this;
         }
 
