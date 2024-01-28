@@ -8,6 +8,7 @@ import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -41,7 +42,7 @@ public class Performance {
 
     @Column(nullable = false)
     @Comment("공연 일시")
-    private LocalDateTime startDate;
+    private Date startDate;
 
     @Column(nullable = false, name = "is_reserve", columnDefinition = "VARCHAR(255) default 'enable'")
     @Comment("예약 가능 여부")
@@ -73,7 +74,7 @@ public class Performance {
         private int price;
         private int round;
         private int type;
-        private LocalDateTime startDate;
+        private Date startDate;
         private String isReserve;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
@@ -103,7 +104,7 @@ public class Performance {
             return this;
         }
 
-        public Builder startDate(LocalDateTime startDate) {
+        public Builder startDate(Date startDate) {
             this.startDate = startDate;
             return this;
         }
