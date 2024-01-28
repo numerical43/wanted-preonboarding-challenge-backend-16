@@ -12,8 +12,8 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table
 @Getter
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"id", "round"}))
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 public class Performance {
 

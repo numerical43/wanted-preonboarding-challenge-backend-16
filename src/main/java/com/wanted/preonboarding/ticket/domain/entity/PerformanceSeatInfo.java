@@ -9,8 +9,8 @@ import org.hibernate.annotations.Comment;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
 @Getter
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"performance_id", "round", "line", "seat"}))
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 public class PerformanceSeatInfo {
 
