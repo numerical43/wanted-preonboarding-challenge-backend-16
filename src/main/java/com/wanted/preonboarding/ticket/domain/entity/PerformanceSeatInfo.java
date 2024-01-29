@@ -2,9 +2,12 @@ package com.wanted.preonboarding.ticket.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -45,87 +48,28 @@ public class PerformanceSeatInfo {
     @Comment("예약 가능 여부")
     private String isReserve;
 
+    @CreationTimestamp
     @Column(nullable = false)
     @Comment("생성일")
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(nullable = false)
     @Comment("수정일")
     private LocalDateTime updatedAt;
 
-    public PerformanceSeatInfo(Builder builder) {
-        this.id = builder.id;
-        this.round = builder.round;
-        this.performance = builder.performance;
-        this.gate = builder.gate;
-        this.line = builder.line;
-        this.seat = builder.seat;
-        this.isReserve = builder.isReserve;
-        this.createdAt = builder.createdAt;
-        this.updatedAt = builder.updatedAt;
-    }
-
-    public static class Builder {
-        private Long id;
-        private int round;
-        private Performance performance;
-        private int gate;
-        private String line;
-        private int seat;
-        private String isReserve;
-        private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
-
-        public Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder round(int round) {
-            this.round = round;
-            return this;
-        }
-
-        public Builder performance(Performance performance) {
-            this.performance = performance;
-            return this;
-        }
-
-        public Builder gate(int gate) {
-            this.gate = gate;
-            return this;
-        }
-
-        public Builder line(String line) {
-            this.line = line;
-            return this;
-        }
-
-        public Builder seat(int seat) {
-            this.seat = seat;
-            return this;
-        }
-
-        public Builder isReserve(String isReserve) {
-            this.isReserve = isReserve;
-            return this;
-        }
-
-        public Builder createdAt(LocalDateTime createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder updatedAt(LocalDateTime updatedAt) {
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-        public PerformanceSeatInfo build() {
-            return new PerformanceSeatInfo(this);
-        }
-
-
+    @Builder
+    public PerformanceSeatInfo(Long id, int round, Performance performance, int gate, String line, int seat,
+                               String isReserve, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.round = round;
+        this.performance = performance;
+        this.gate = gate;
+        this.line = line;
+        this.seat = seat;
+        this.isReserve = isReserve;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
 }

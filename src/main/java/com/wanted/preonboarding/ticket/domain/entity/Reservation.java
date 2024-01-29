@@ -2,9 +2,12 @@ package com.wanted.preonboarding.ticket.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -49,93 +52,29 @@ public class Reservation {
     @Comment("좌석 행")
     private int seat;
 
+    @CreationTimestamp
     @Column(nullable = false)
     @Comment("생성일")
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(nullable = false)
     @Comment("수정일")
     private LocalDateTime updatedAt;
 
-    public Reservation(Builder builder) {
-        this.id = builder.id;
-        this.performance = builder.performance;
-        this.name = builder.name;
-        this.phoneNumber = builder.phoneNumber;
-        this.round = builder.round;
-        this.gate = builder.gate;
-        this.line = builder.line;
-        this.seat = builder.seat;
-        this.createAt = builder.createAt;
-        this.updatedAt = builder.updatedAt;
-    }
-
-    public static class Builder {
-        private int id;
-        private Performance performance;
-        private String name;
-        private String phoneNumber;
-        private int round;
-        private int gate;
-        private char line;
-        private int seat;
-        private LocalDateTime createAt;
-        private LocalDateTime updatedAt;
-
-        public Builder id(int id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder performance(Performance performance) {
-            this.performance = performance;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder phoneNumber(String phoneNumber) {
-            this.phoneNumber = phoneNumber;
-            return this;
-        }
-
-        public Builder round(int round) {
-            this.round = round;
-            return this;
-        }
-
-        public Builder gate(int gate) {
-            this.gate = gate;
-            return this;
-        }
-
-        public Builder line(char line) {
-            this.line = line;
-            return this;
-        }
-
-        public Builder seat(int seat) {
-            this.seat = seat;
-            return this;
-        }
-
-        public Builder createAt(LocalDateTime createAt) {
-            this.createAt = createAt;
-            return this;
-        }
-
-        public Builder updateAt(LocalDateTime updatedAt) {
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-        public Reservation builder() {
-            return new Reservation(this);
-        }
-
+    @Builder
+    public Reservation(int id, Performance performance, String name, String phoneNumber, int round, int gate, char line,
+                       int seat, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.performance = performance;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.round = round;
+        this.gate = gate;
+        this.line = line;
+        this.seat = seat;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
 }
