@@ -2,10 +2,13 @@ package com.wanted.preonboarding.ticket.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -48,85 +51,28 @@ public class Performance {
     @Comment("예약 가능 여부")
     private String isReserve;
 
+    @CreationTimestamp
     @Column(nullable = false)
     @Comment("생성일")
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(nullable = false)
     @Comment("수정일")
     private LocalDateTime updatedAt;
 
-    public Performance(Builder builder) {
-        this.id = builder.id;
-        this.name = builder.name;
-        this.price = builder.price;
-        this.round = builder.round;
-        this.type = builder.type;
-        this.startDate = builder.startDate;
-        this.isReserve = builder.isReserve;
-        this.createdAt = builder.createdAt;
-        this.updatedAt = builder.updatedAt;
-    }
-
-    public static class Builder {
-        private UUID id;
-        private String name;
-        private int price;
-        private int round;
-        private int type;
-        private Date startDate;
-        private String isReserve;
-        private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
-
-        public Builder id(UUID id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder price(int price) {
-            this.price = price;
-            return this;
-        }
-
-        public Builder round(int round) {
-            this.round = round;
-            return this;
-        }
-
-        public Builder type(int type) {
-            this.type = type;
-            return this;
-        }
-
-        public Builder startDate(Date startDate) {
-            this.startDate = startDate;
-            return this;
-        }
-
-        public Builder isReserve(String isReserve) {
-            this.isReserve = isReserve;
-            return this;
-        }
-
-        public Builder createdAt(LocalDateTime createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder updatedAd(LocalDateTime updatedAt) {
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-        public Performance build() {
-            return new Performance(this);
-        }
+    @Builder
+    public Performance(UUID id, String name, int price, int round, int type, Date startDate, String isReserve,
+                       LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.round = round;
+        this.type = type;
+        this.startDate = startDate;
+        this.isReserve = isReserve;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
 }
