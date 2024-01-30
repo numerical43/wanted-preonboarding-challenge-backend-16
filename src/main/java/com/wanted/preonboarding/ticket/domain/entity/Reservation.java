@@ -1,5 +1,6 @@
 package com.wanted.preonboarding.ticket.domain.entity;
 
+import com.wanted.preonboarding.ticket.domain.dto.ReserveInfo;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
