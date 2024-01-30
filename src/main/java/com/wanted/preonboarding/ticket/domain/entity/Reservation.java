@@ -78,4 +78,16 @@ public class Reservation {
         this.updatedAt = updatedAt;
     }
 
+    public static Reservation of(ReserveInfo info, Performance performance) {
+        return Reservation.builder()
+                .performance(performance)
+                .name(info.getReservationName())
+                .phoneNumber(info.getReservationPhoneNumber())
+                .round(info.getRound())
+                .gate(1)
+                .line(info.getLine())
+                .seat(info.getSeat())
+                .build();
+    }
+
 }
