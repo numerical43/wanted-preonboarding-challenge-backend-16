@@ -1,4 +1,4 @@
-package com.wanted.preonboarding.ticket.domain.service;
+package com.wanted.preonboarding.ticket.application;
 
 import com.wanted.preonboarding.ticket.infrastructure.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;

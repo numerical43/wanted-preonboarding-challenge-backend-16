@@ -1,5 +1,6 @@
 package com.wanted.preonboarding.ticket.domain.entity;
 
+import com.wanted.preonboarding.ticket.domain.dto.ReserveInfo;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -75,6 +76,18 @@ public class Reservation {
         this.seat = seat;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public static Reservation of(ReserveInfo info, Performance performance) {
+        return Reservation.builder()
+                .performance(performance)
+                .name(info.getReservationName())
+                .phoneNumber(info.getReservationPhoneNumber())
+                .round(info.getRound())
+                .gate(1)
+                .line(info.getLine())
+                .seat(info.getSeat())
+                .build();
     }
 
 }
